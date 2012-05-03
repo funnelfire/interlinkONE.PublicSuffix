@@ -7,11 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicSuffix.Specs", "..\sp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EAF0D2AC-1F5A-4C33-8FCD-EBE6334A2BFC}"
 	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		PublicSuffix.vsmdi = PublicSuffix.vsmdi
 		..\rakefile.rb = ..\rakefile.rb
 		..\README.md = ..\README.md
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicSuffix.UnitTests", "PublicSuffix.UnitTests\PublicSuffix.UnitTests.csproj", "{C96F2EE0-3F77-4D02-8972-925BF09CF487}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = PublicSuffix.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -45,6 +53,14 @@ Global
 		{669D052D-8827-4AF1-AED5-969A2CB301D4}.Release|x64.Build.0 = Release|x64
 		{669D052D-8827-4AF1-AED5-969A2CB301D4}.Release|x86.ActiveCfg = Release|x86
 		{669D052D-8827-4AF1-AED5-969A2CB301D4}.Release|x86.Build.0 = Release|x86
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Release|x64.ActiveCfg = Release|Any CPU
+		{C96F2EE0-3F77-4D02-8972-925BF09CF487}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

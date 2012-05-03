@@ -5,20 +5,24 @@ using System.Linq;
 
 using PublicSuffix.Rules;
 
-namespace PublicSuffix {
+namespace PublicSuffix
+{
 
     /// <summary>
     /// Parser attempts to return a <see cref="Domain" /> instead from a string url by
     /// inspecting a ist of <see cref="Rule"/>s from a <see cref="RulesList"/>.
     /// </summary>
-    public class Parser {
-        private Rule[] Rules { get; set; }
+    public class Parser
+    {
+
+        private List<Rule> Rules { get; set; }
 
         /// <summary>
         /// Parser requires an array of <see cref="Rule" />s to do its work.
         /// </summary>
         /// <param name="rules">An array of <see cref="Rule" />s from a <see cref="RulesList" /></param>
-        public Parser(Rule[] rules) {
+        public Parser(List<Rule> rules)
+        {
             this.Rules = rules;
         }
 
@@ -34,12 +38,13 @@ namespace PublicSuffix {
         /// </summary>
         /// <param name="url">A valid url. example: http://www.google.com</param>
         /// <returns>A normalized <see cref="Domain" /> instance.</returns>
-        public Domain Parse(string url) {
+        public Domain Parse(string url)
+        {
             var matches = this.Rules
                 .Where(r => r.IsMatch(url))
                 .ToList();
 
-            var rule =  matches.FirstOrDefault(r => r is ExceptionRule)
+            var rule = matches.FirstOrDefault(r => r is ExceptionRule)
                         ??
                         matches.OrderByDescending(r => r.Length).FirstOrDefault()
                         ??
@@ -48,5 +53,4 @@ namespace PublicSuffix {
             return rule.Parse(url);
         }
     }
-
 }

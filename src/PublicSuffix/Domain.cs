@@ -2,6 +2,7 @@
 using System.Linq;
 
 using PublicSuffix.Rules;
+using System;
 
 namespace PublicSuffix {
 
