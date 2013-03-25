@@ -1,5 +1,4 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -35,6 +34,16 @@ namespace PublicSuffix
 
             // using the hopefully updated version load it.
             this.AddRange(FromFile());
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RulesList"/> class. 
+        /// </summary>
+        /// <param name="stream"> The rules list stream to load.  </param>
+        public RulesList(StreamReader stream)
+            : base()
+        {
+            this.AddRange(FromStream(stream));
         }
 
         /// <summary>
@@ -81,6 +90,25 @@ namespace PublicSuffix
                          select RuleFactory.Get(line)).ToArray();
 
             return this.ToArray();
+        }
+
+        /// <summary>
+        /// Reads a PublicSuffix from a stream.
+        /// </summary>
+        /// <param name="stream"> The stream. </param>
+        /// <returns> An array of <see cref="Rule"/>s. </returns>
+        private IEnumerable<Rule> FromStream(StreamReader stream)
+        {
+            var rules = new List<Rule>();
+            string line;
+            while ((line = stream.ReadLine()) != null)
+            {
+                if (IsValidRule(line))
+                {
+                    rules.Add(RuleFactory.Get(line));
+                }
+            }
+            return rules.ToArray();
         }
 
         /// <summary>
