@@ -23,9 +23,9 @@ namespace PublicSuffix.UnitTests
         [TestMethod]
         public void TestStreamConstructor()
         {
-            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PublicSuffix" + "effective_tld_names.dat");
-            var something = new RulesList(stream);
-            Console.WriteLine(something);
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PublicSuffix.UnitTests." + "effective_tld_names.dat");
+            var rules = new RulesList(stream);
+            Console.WriteLine(rules);
         }
     }
 }

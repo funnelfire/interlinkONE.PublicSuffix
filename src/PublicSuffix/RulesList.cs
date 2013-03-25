@@ -22,7 +22,7 @@ namespace PublicSuffix
         /// Creates a new RulesList
         /// <param name="fileName">The rules list file to load</param>
         /// </summary>
-        RulesList(string fileName)
+        public RulesList(string fileName)
             : base()
         {
             // set the filename for posterity, 
@@ -63,7 +63,6 @@ namespace PublicSuffix
 
         /// <summary>
         /// Updates the rule list from the original source.
-        /// <param name="fileName">The file name that will be updated</param>
         /// </summary>
         public void Update()
         {
@@ -80,8 +79,6 @@ namespace PublicSuffix
         /// <summary>
         /// Reads a PublixSuffix formatted file.
         /// </summary>
-        /// <param name="file">The a text file.</param>
-        /// <param name="update">Should the file be updated using latest. (default's to false)</param>
         /// <returns>An array of <see cref="Rule" />s.</returns>
         Rule[] FromFile()
         {
@@ -100,9 +97,9 @@ namespace PublicSuffix
         private IEnumerable<Rule> FromStream(Stream stream)
         {
             var rules = new List<Rule>();
-            string line;
             using (var reader = new StreamReader(stream))
             {
+                string line;
                 while ((line = reader.ReadLine()) != null)
                 {
                     if (IsValidRule(line)) rules.Add(RuleFactory.Get(line));
@@ -133,7 +130,6 @@ namespace PublicSuffix
         /// Reads a PublixSuffix formatted file.
         /// </summary>
         /// <param name="file">The a text file.</param>
-        /// <param name="update">Should the file be updated using latest. (default's to false)</param>
         /// <returns>An array of <see cref="Rule" />s.</returns>
         public static Rule[] FromFile(string file)
         {
