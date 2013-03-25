@@ -48,6 +48,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="effective_tld_names.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PublicSuffix\PublicSuffix.csproj">
+      <Project>{662A401D-75B5-4B41-8D82-D77BEF799267}</Project>
+      <Name>PublicSuffix</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

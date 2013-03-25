@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,17 @@ namespace PublicSuffix.UnitTests
         public void TestMethod1()
         {
 
+        }
+
+        /// <summary>
+        /// The test stream constructor test method.
+        /// </summary>
+        [TestMethod]
+        public void TestStreamConstructor()
+        {
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PublicSuffix" + "effective_tld_names.dat");
+            var something = new RulesList(stream);
+            Console.WriteLine(something);
         }
     }
 }

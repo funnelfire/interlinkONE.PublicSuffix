@@ -40,7 +40,7 @@ namespace PublicSuffix
         /// Initializes a new instance of the <see cref="RulesList"/> class. 
         /// </summary>
         /// <param name="stream"> The rules list stream to load.  </param>
-        public RulesList(StreamReader stream)
+        public RulesList(Stream stream)
             : base()
         {
             this.AddRange(FromStream(stream));
@@ -97,17 +97,18 @@ namespace PublicSuffix
         /// </summary>
         /// <param name="stream"> The stream. </param>
         /// <returns> An array of <see cref="Rule"/>s. </returns>
-        private IEnumerable<Rule> FromStream(StreamReader stream)
+        private IEnumerable<Rule> FromStream(Stream stream)
         {
             var rules = new List<Rule>();
             string line;
-            while ((line = stream.ReadLine()) != null)
+            using (var reader = new StreamReader(stream))
             {
-                if (IsValidRule(line))
+                while ((line = reader.ReadLine()) != null)
                 {
-                    rules.Add(RuleFactory.Get(line));
+                    if (IsValidRule(line)) rules.Add(RuleFactory.Get(line));
                 }
             }
+
             return rules.ToArray();
         }
 
