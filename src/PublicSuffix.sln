@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicSuffix", "PublicSuffix\PublicSuffix.csproj", "{662A401D-75B5-4B41-8D82-D77BEF799267}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicSuffix.Specs", "..\specs\PublicSuffix.Specs\PublicSuffix.Specs.csproj", "{669D052D-8827-4AF1-AED5-969A2CB301D4}"
@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		PublicSuffix.vsmdi = PublicSuffix.vsmdi
 		..\rakefile.rb = ..\rakefile.rb
 		..\README.md = ..\README.md
+		Settings.StyleCop = Settings.StyleCop
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
