@@ -98,7 +98,16 @@ namespace PublicSuffix.Rules {
         /// <param name="url">A valid url, example: http://www.google.com</param>
         /// <returns>A string array in reverse order.</returns>
         protected string[] Canonicalize(string url) {
-            var uri = new Uri(url);
+            return Canonicalize(new UriBuilder(url).Uri);
+        }
+
+        /// <summary>
+        /// Converts a valid uri to a canonicalized uri, example: com.google.maps
+        /// </summary>
+        /// <param name="uri"> A valid url, example: http://www.google.com </param>
+        /// <returns> A string array in reverse order. </returns>
+        protected string[] Canonicalize(Uri uri)
+        {
             return uri.DnsSafeHost.Split('.').Reverse().ToArray();
         }
     }
