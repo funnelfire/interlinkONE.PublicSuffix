@@ -52,5 +52,15 @@ namespace PublicSuffix
 
             return rule.Parse(url);
         }
+
+        /// <summary>
+        /// Calls the string version of Parse.
+        /// </summary>
+        /// <param name="url"> The url. </param>
+        /// <returns> A normalized <see cref="Domain"/> instance. </returns>
+        public Domain Parse(Uri url)
+        {
+            return Parse(url.ToString());
+        }
     }
 }
