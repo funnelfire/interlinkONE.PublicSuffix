@@ -40,7 +40,7 @@ namespace PublicSuffix
         /// <returns>A normalized <see cref="Domain" /> instance.</returns>
         public Domain Parse(string url)
         {
-            var matches = this.Rules
+            var matches = Rules
                 .Where(r => r.IsMatch(url))
                 .ToList();
 
@@ -60,7 +60,7 @@ namespace PublicSuffix
         /// <returns> A normalized <see cref="Domain"/> instance. </returns>
         public Domain Parse(Uri url)
         {
-            var matches = this.Rules
+            var matches = Rules
                 .Where(r => r.IsMatch(url))
                 .ToList();
 
