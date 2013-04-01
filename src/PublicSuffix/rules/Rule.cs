@@ -8,42 +8,49 @@ namespace PublicSuffix.Rules {
     /// <summary>
     /// An abstract Rule class that the specific Rule Types inherit from.
     /// </summary>
-    public abstract class Rule {
-
+    public abstract class Rule
+    {
         /// <summary>
-        /// The normalized rule name
+        /// Gets or sets the normalized rule name
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// The raw rule value
+        /// Gets or sets the raw rule value
         /// </summary>
         public string Value { get; set; }
 
         /// <summary>
-        /// Create a new Rule instance.
+        /// Initializes a new instance of the <see cref="Rule"/> class. 
         /// </summary>
-        /// <param name="name">A line from a <see cref="RulesList" /></param>
-        public Rule(string name) {
-            this.Name   = name.ToLowerInvariant();
-            this.Value  = this.Name;
+        /// <param name="name">
+        /// A line from a <see cref="RulesList"/>
+        /// </param>
+        protected Rule(string name)
+        {
+            Name   = name.ToLowerInvariant();
+            Value  = Name;
         }
 
         /// <summary>
-        /// An array of parts from splitting the rule along the dots.
+        /// Gets an array of parts from splitting the rule along the dots.
         /// </summary>
-        public string[] Parts {
-            get {
-                return this.Name.Split('.').Reverse().ToArray();
+        public string[] Parts
+        {
+            get
+            {
+                return Name.Split('.').Reverse().ToArray();
             }
         }
 
         /// <summary>
-        /// The number of <see cref="Parts" />
+        /// Gets the number of <see cref="Parts" />
         /// </summary>
-        public int Length {
-            get {
-                return this.Parts.Length;
+        public int Length
+        {
+            get
+            {
+                return Parts.Length;
             }
         }
 
@@ -51,8 +58,9 @@ namespace PublicSuffix.Rules {
         /// Convert this rule instance to a string.
         /// </summary>
         /// <returns>The <see cref="Name" /></returns>
-        public override string ToString() {
-            return this.Name;
+        public override string ToString()
+        {
+            return Name;
         }
 
         /// <summary>
@@ -87,16 +95,8 @@ namespace PublicSuffix.Rules {
         /// <returns>A valid <see cref="Domain" /> instance.</returns>
         public virtual Domain Parse(string url)
         {
-            var host = this.Canonicalize(url);
-
-            var domain = new Domain()
-            {
-                TLD         = string.Join(".", host.Take(this.Length).Reverse().ToArray()),
-                MainDomain  = host.Skip(this.Length).First(),
-                SubDomain   = string.Join(".", host.Skip(this.Length + 1).Reverse().ToArray())
-            };
-
-            return domain;
+            var host = Canonicalize(url);
+            return Parse(host);
         }
 
         /// <summary>
@@ -108,15 +108,7 @@ namespace PublicSuffix.Rules {
         public virtual Domain Parse(Uri url)
         {
             var host = Canonicalize(url);
-
-            var domain = new Domain()
-            {
-                TLD = string.Join(".", host.Take(Length).Reverse().ToArray()),
-                MainDomain = host.Skip(Length).First(),
-                SubDomain = string.Join(".", host.Skip(Length + 1).Reverse().ToArray())
-            };
-
-            return domain;
+            return Parse(host);
         }
 
         /// <summary>
@@ -143,14 +135,33 @@ namespace PublicSuffix.Rules {
         {
             var match = true;
 
-            for (var h = 0; h < host.Count; h++)
+            var parts = Parts;
+            var partsLen = parts.Length;
+
+            for (var h = 0; h < host.Count(); h++)
             {
-                if (h >= Length) continue;
-                var part = Parts[h];
+                if (h >= partsLen) continue;
+                var part = parts[h];
                 if (part != host[h] && part != "*") match = false;
             }
 
             return match;
+        }
+
+        private Domain Parse(string[] host)
+        {
+            var len = Length;
+            var reverseTld = host.Take(len).Reverse();
+            var reverseSub = host.Skip(len + 1).Reverse();
+
+            var domain = new Domain
+            {
+                TLD = string.Join(".", reverseTld),
+                MainDomain = host.Skip(len).First(),
+                SubDomain = string.Join(".", reverseSub)
+            };
+
+            return domain;
         }
     }
 }
