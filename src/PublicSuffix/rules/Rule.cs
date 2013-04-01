@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PublicSuffix.Rules {
@@ -60,18 +61,22 @@ namespace PublicSuffix.Rules {
         /// </summary>
         /// <param name="url">A valid url, example: http://www.google.com</param>
         /// <returns>true if the rule matches; otherwise, false.</returns>
-        public virtual bool IsMatch(string url) {
-            var host    = this.Canonicalize(url);
-            var match   = true;
+        public virtual bool IsMatch(string url)
+        {
+            var host = Canonicalize(url);
+            return IsMatch(host);
+        }
 
-            for(var h = 0; h < host.Length; h++) {
-                if(h < this.Length) {
-                    var part = this.Parts[h];
-                    if(part != host[h] && part != "*") match = false;
-                }
-            }
-
-            return match;
+        /// <summary>
+        /// A domain is said to match a rule if, when the domain and rule are both split, and one compares the labels from the rule to the labels from the domain, beginning at the right hand end, one finds that for every pair either they are identical, or that the label from the rule is "*" (star).
+        /// The domain may legitimately have labels remaining at the end of this matching process.
+        /// </summary>
+        /// <param name="url">A valid url, example: http://www.google.com</param>
+        /// <returns>true if the rule matches; otherwise, false.</returns>
+        public virtual bool IsMatch(Uri url)
+        {
+            var host = Canonicalize(url);
+            return IsMatch(host);
         }
 
         /// <summary>
@@ -80,13 +85,35 @@ namespace PublicSuffix.Rules {
         /// </summary>
         /// <param name="url">A valid url, example: http://www.google.com</param>
         /// <returns>A valid <see cref="Domain" /> instance.</returns>
-        public virtual Domain Parse(string url) {
+        public virtual Domain Parse(string url)
+        {
             var host = this.Canonicalize(url);
 
-            var domain = new Domain() {
+            var domain = new Domain()
+            {
                 TLD         = string.Join(".", host.Take(this.Length).Reverse().ToArray()),
                 MainDomain  = host.Skip(this.Length).First(),
                 SubDomain   = string.Join(".", host.Skip(this.Length + 1).Reverse().ToArray())
+            };
+
+            return domain;
+        }
+
+        /// <summary>
+        /// Parses a domain name from the supplied url and current <see cref="Rule" /> instance.
+        /// Gets the Top, Second and Third level domains populated (if present.)
+        /// </summary>
+        /// <param name="url">A valid url, example: http://www.google.com</param>
+        /// <returns>A valid <see cref="Domain" /> instance.</returns>
+        public virtual Domain Parse(Uri url)
+        {
+            var host = Canonicalize(url);
+
+            var domain = new Domain()
+            {
+                TLD = string.Join(".", host.Take(Length).Reverse().ToArray()),
+                MainDomain = host.Skip(Length).First(),
+                SubDomain = string.Join(".", host.Skip(Length + 1).Reverse().ToArray())
             };
 
             return domain;
@@ -97,7 +124,8 @@ namespace PublicSuffix.Rules {
         /// </summary>
         /// <param name="url">A valid url, example: http://www.google.com</param>
         /// <returns>A string array in reverse order.</returns>
-        protected string[] Canonicalize(string url) {
+        protected string[] Canonicalize(string url)
+        {
             return Canonicalize(new UriBuilder(url).Uri);
         }
 
@@ -109,6 +137,20 @@ namespace PublicSuffix.Rules {
         protected string[] Canonicalize(Uri uri)
         {
             return uri.DnsSafeHost.Split('.').Reverse().ToArray();
+        }
+
+        private bool IsMatch(IList<string> host)
+        {
+            var match = true;
+
+            for (var h = 0; h < host.Count; h++)
+            {
+                if (h >= Length) continue;
+                var part = Parts[h];
+                if (part != host[h] && part != "*") match = false;
+            }
+
+            return match;
         }
     }
 }
