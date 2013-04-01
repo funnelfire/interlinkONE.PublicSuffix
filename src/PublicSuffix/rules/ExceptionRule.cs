@@ -1,21 +1,23 @@
-﻿
-using System.Linq;
+﻿using System.Linq;
 
-namespace PublicSuffix.Rules {
-
+namespace PublicSuffix.Rules
+{
     /// <summary>
     /// An Exception Rule starts with a "!"
-    /// If it does, it is labelled as a "exception rule" and then treated as if the exclamation mark is not present.
+    /// If it does, it is labeled as a "exception rule" and then treated as if the exclamation mark is not present.
     /// Marks an exception to a previous wildcard rule.
     /// </summary>
-    public class ExceptionRule : Rule {
-
+    public class ExceptionRule : Rule
+    {
         /// <summary>
-        /// Create a new <see cref="ExceptionRule" /> instance from a <see cref="Rule" /> from a <see cref="RulesList" />
+        /// Initializes a new instance of the <see cref="ExceptionRule"/> class. 
         /// </summary>
-        /// <param name="name">The rule, example: !metro.tokyo.jp</param>
-        public ExceptionRule(string name) : base(name) {
-            this.Name = this.Name.Substring(1); // strip "!" character
+        /// <param name="name">
+        /// The rule, example: !metro.tokyo.jp
+        /// </param>
+        public ExceptionRule(string name) : base(name) 
+        {
+            Name = Name.Substring(1); // strip "!" character
         }
 
         /// <summary>
@@ -25,13 +27,16 @@ namespace PublicSuffix.Rules {
         /// </summary>
         /// <param name="url">A valid url, example: http://www.site.metro.tokyo.jp</param>
         /// <returns>A valid <see cref="Domain" /> instance.</returns>
-        public override Domain Parse(string url) {
-            var host = this.Canonicalize(url);
+        public override Domain Parse(string url)
+        {
+            var host = Canonicalize(url);
+            var len = Parts.Length;
 
-            var domain = new Domain() {
-                TLD         = string.Join(".", this.Parts.Reverse().Skip(1).ToArray()),
-                MainDomain  = this.Parts.Last(),
-                SubDomain   = string.Join(".", host.Skip(this.Length).Reverse().ToArray())
+            var domain = new Domain()
+            {
+                TLD         = string.Join(".", Parts.Reverse().Skip(1).ToArray()),
+                MainDomain  = Parts.Last(),
+                SubDomain   = string.Join(".", host.Skip(len).Reverse().ToArray())
             };
 
             return domain;
