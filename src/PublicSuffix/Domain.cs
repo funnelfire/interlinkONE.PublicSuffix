@@ -25,11 +25,17 @@ namespace PublicSuffix {
         /// The Third Level Domain, example: www
         /// </summary>
         public string SubDomain { get; set; }
-        
+
         /// <summary>
-        /// Is the current <see cref="Domain"/> a known public suffix.
+        /// Gets a value indicating whether the current <see cref="Domain"/> a known public suffix.
         /// </summary>
-        public bool IsValid { get; set; }
+        public bool IsValid
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(TLD);
+            }
+        }
 
         /// <summary>
         /// The Main Domain and the TLD in dot notation, example: google.com
@@ -73,11 +79,11 @@ namespace PublicSuffix {
         /// The optional Third Level Domain is expected last.
         /// </summary>
         /// <param name="parts">A string array of the domain parts.</param>
-        public Domain(params string[] parts) {
-            this.TLD        = parts[0];
-            this.MainDomain = parts[1];
-            this.SubDomain  = parts[2];
-            this.IsValid    = true;
+        public Domain(params string[] parts)
+        {
+            TLD = parts[0];
+            MainDomain = parts[1];
+            SubDomain = parts[2];
         }
 
         /// <summary>

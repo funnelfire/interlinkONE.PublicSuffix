@@ -60,6 +60,7 @@ namespace PublicSuffix
         /// <returns> A normalized <see cref="Domain"/> instance. </returns>
         public Domain Parse(Uri url)
         {
+            if (!url.ToString().Contains('.')) return new Domain();
             var matches = Rules
                 .Where(r => r.IsMatch(url))
                 .ToList();

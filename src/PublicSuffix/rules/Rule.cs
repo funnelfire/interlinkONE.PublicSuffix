@@ -116,20 +116,24 @@ namespace PublicSuffix.Rules
         /// <returns> A string array in reverse order. </returns>
         protected string[] Canonicalize(Uri uri)
         {
-            return uri.DnsSafeHost.Split('.').Reverse().ToArray();
+            return uri.Host.Split('.').Reverse().ToArray();
         }
 
         private bool IsMatch(IList<string> host)
         {
             var match = true;
-
             var parts = Parts;
 
-            for (var h = 0; h < host.Count; h++)
+            /*for (var h = 0; h < host.Count; h++)
             {
                 if (h >= Length) continue;
                 var part = parts[h];
                 if (part != host[h] && part != "*") match = false;
+            }*/
+
+            foreach (var h in host.Where(h => !parts.Contains(h)))
+            {
+                match = false;
             }
 
             return match;

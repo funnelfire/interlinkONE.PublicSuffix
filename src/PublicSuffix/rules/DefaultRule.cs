@@ -25,7 +25,6 @@ namespace PublicSuffix.Rules
         public override Domain Parse(string url)
         {
             var domain = base.Parse(url);
-            domain.IsValid = false;
 
             return domain;
         }

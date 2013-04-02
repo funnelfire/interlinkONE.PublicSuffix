@@ -1,0 +1,266 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// ===BEGIN ICANN DOMAINS===
+
+// ae : http://en.wikipedia.org/wiki/.ae
+// see also: "Domain Name Eligibility Policy" at http://www.aeda.ae/eng/aepolicy.php
+ae
+co.ae
+net.ae
+org.ae
+sch.ae
+ac.ae
+gov.ae
+mil.ae
+
+// aero : see http://www.information.aero/index.php?id=66
+aero
+
+// arpa : http://en.wikipedia.org/wiki/.arpa
+// Confirmed by registry <iana-questions@icann.org> 2008-06-18
+e164.arpa
+in-addr.arpa
+ip6.arpa
+iris.arpa
+uri.arpa
+urn.arpa
+
+// asia : http://en.wikipedia.org/wiki/.asia
+asia
+
+// au : http://en.wikipedia.org/wiki/.au
+// http://www.auda.org.au/
+// 2LDs
+com.au
+net.au
+org.au
+edu.au
+gov.au
+asn.au
+id.au
+// Historic 2LDs (closed to new registration, but sites still exist)
+info.au
+conf.au
+oz.au
+// Removed at request of Shae.Donelan@services.nsw.gov.au, 2010-03-04
+// nsw.gov.au
+nt.gov.au
+qld.gov.au
+sa.gov.au
+tas.gov.au
+vic.gov.au
+wa.gov.au
+
+// ca : http://en.wikipedia.org/wiki/.ca
+ca
+// gc.ca: http://en.wikipedia.org/wiki/.gc.ca
+// see also: http://registry.gc.ca/en/SubdomainFAQ
+gc.ca
+
+// cat : http://en.wikipedia.org/wiki/.cat
+cat
+
+// cc : http://en.wikipedia.org/wiki/.cc
+cc
+
+// cn : http://en.wikipedia.org/wiki/.cn
+// Submitted by registry <tanyaling@cnnic.cn> 2008-06-11
+cn
+ac.cn
+com.cn
+edu.cn
+gov.cn
+net.cn
+org.cn
+mil.cn
+公司.cn
+网络.cn
+網絡.cn
+
+// com : http://en.wikipedia.org/wiki/.com
+com
+
+// coop : http://en.wikipedia.org/wiki/.coop
+coop
+
+// de : http://en.wikipedia.org/wiki/.de
+// Confirmed by registry <ops@denic.de> (with technical
+// reservations) 2008-07-01
+de
+
+// edu : http://en.wikipedia.org/wiki/.edu
+edu
+
+// fr : http://www.afnic.fr/
+// domaines descriptifs : http://www.afnic.fr/obtenir/chartes/nommage-fr/annexe-descriptifs
+fr
+com.fr
+asso.fr
+nom.fr
+prd.fr
+presse.fr
+tm.fr
+
+// gov : http://en.wikipedia.org/wiki/.gov
+gov
+
+// hk : https://www.hkdnr.hk
+// Submitted by registry <hk.tech@hkirc.hk> 2008-06-11
+hk
+com.hk
+edu.hk
+gov.hk
+idv.hk
+net.hk
+org.hk
+
+// info : http://en.wikipedia.org/wiki/.info
+info
+
+// int : http://en.wikipedia.org/wiki/.int
+// Confirmed by registry <iana-questions@icann.org> 2008-06-18
+int
+eu.int
+
+// it : http://en.wikipedia.org/wiki/.it
+it
+gov.it
+edu.it
+
+// jobs : http://en.wikipedia.org/wiki/.jobs
+jobs
+
+// jp : http://en.wikipedia.org/wiki/.jp
+// http://jprs.co.jp/en/jpdomain.html
+// Updated by registry <info@jprs.jp> 2012-05-28
+jp
+// jp organizational type names
+ac.jp
+ad.jp
+co.jp
+ed.jp
+go.jp
+gr.jp
+lg.jp
+ne.jp
+or.jp
+
+// kp : http://www.kcce.kp/en_index.php
+com.kp
+edu.kp
+gov.kp
+org.kp
+rep.kp
+tra.kp
+
+// kr : http://en.wikipedia.org/wiki/.kr
+// see also: http://domain.nida.or.kr/eng/registration.jsp
+kr
+ac.kr
+co.kr
+es.kr
+go.kr
+hs.kr
+kg.kr
+mil.kr
+ms.kr
+ne.kr
+or.kr
+pe.kr
+re.kr
+sc.kr
+
+// ky : http://www.icta.ky/da_ky_reg_dom.php
+// Confirmed by registry <kysupport@perimeterusa.com> 2008-06-17
+ky
+edu.ky
+gov.ky
+com.ky
+org.ky
+net.ky
+
+// ly : http://www.nic.ly/regulations.php
+ly
+com.ly
+net.ly
+gov.ly
+plc.ly
+edu.ly
+sch.ly
+med.ly
+org.ly
+id.ly
+
+// mobi : http://en.wikipedia.org/wiki/.mobi
+mobi
+
+// museum : http://about.museum/naming/
+// http://index.museum/
+museum
+
+// mx : http://www.nic.mx/
+// Submitted by registry <farias@nic.mx> 2008-06-19
+mx
+com.mx
+org.mx
+gob.mx
+edu.mx
+net.mx
+
+// name : has 2nd-level tlds, but there's no list of them
+name
+
+// net : http://en.wikipedia.org/wiki/.net
+net
+
+// org : http://en.wikipedia.org/wiki/.org
+org
+
+// post : http://en.wikipedia.org/wiki/.post
+post
+
+// pro : http://www.nic.pro/support_faq.htm
+pro
+aca.pro
+bar.pro
+cpa.pro
+jur.pro
+law.pro
+med.pro
+eng.pro
+
+// travel : http://en.wikipedia.org/wiki/.travel
+travel
+
+// tv : http://en.wikipedia.org/wiki/.tv
+// Not listing any 2LDs as reserved since none seem to exist in practice,
+// Wikipedia notwithstanding.
+tv
+
+// uk : http://en.wikipedia.org/wiki/.uk
+// Submitted by registry <noc@nominet.org.uk> 2012-10-02
+// and tweaked by us pending further consultation.
+*.uk
+*.sch.uk
+!bl.uk
+!british-library.uk
+!jet.uk
+!mod.uk
+!national-library-scotland.uk
+!nel.uk
+!nic.uk
+!nls.uk
+!parliament.uk
+
+// us : http://en.wikipedia.org/wiki/.us
+us
+dni.us
+fed.us
+isa.us
+kids.us
+nsn.us
+// xxx : http://icmregistry.com
+xxx
+// ===END ICANN DOMAINS===
